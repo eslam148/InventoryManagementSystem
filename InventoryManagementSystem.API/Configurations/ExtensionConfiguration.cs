@@ -15,6 +15,7 @@ using InventoryManagementSystem.Application.Features.Reports.Queries;
 using System.Reflection;
 using Hangfire;
 using InventoryManagementSystem.Application.Services;
+using InventoryManagementSystem.API.Middlewares;
 
 namespace InventoryManagementSystem.API.Configurations
 {
@@ -33,11 +34,12 @@ namespace InventoryManagementSystem.API.Configurations
             services.AddAutoMapper(typeof(InventoryProfile).Assembly);
             services.AddAutoMapper(typeof(ReportProfile).Assembly);
             services.AddScoped<INotificationService, NotificationService>();
-
+            services.AddScoped<GlobalErrorHandlerMiddleware>();
+            services.AddScoped<TransactionMiddleware>();
             services.AddHangfire(config => config.UseSqlServerStorage(configuration.GetConnectionString("DefaultConnection")));
             services.AddHangfireServer();
 
-
+            
 
         }
 

@@ -2,6 +2,7 @@
 using AutoMapper;
 using Hangfire;
 using InventoryManagementSystem.API.Configurations;
+using InventoryManagementSystem.API.Middlewares;
 using InventoryManagementSystem.Application.Helpper;
 using InventoryManagementSystem.Application.Services;
 namespace InventoryManagementSystem.API
@@ -29,12 +30,15 @@ namespace InventoryManagementSystem.API
 
             MapperHelpper.Mapper = app.Services.GetService<IMapper>();
             JWTHelpper.configuration = app.Services.GetService<IConfiguration>();
+           
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseMiddleware<GlobalErrorHandlerMiddleware>();
+            app.UseMiddleware<TransactionMiddleware>();
             app.UseHangfireDashboard("/hangfire");
            
             app.UseHttpsRedirection();
