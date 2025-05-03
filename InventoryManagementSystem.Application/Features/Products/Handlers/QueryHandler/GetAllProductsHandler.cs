@@ -19,11 +19,11 @@ namespace InventoryManagementSystem.Application.Features.Products.Handlers
     public class GetAllProductsHandler: IRequestHandler<GetAllProductsQuery, BaseReponseGeneric<List<GetProductDto>>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<GetAllProductsHandler> _logger;
-        public GetAllProductsHandler(IUnitOfWork unitOfWork, ILogger<GetAllProductsHandler> logger)
+       
+        public GetAllProductsHandler(IUnitOfWork unitOfWork )
         {
             _unitOfWork = unitOfWork;
-            _logger = logger;
+           
         }
         public async Task<BaseReponseGeneric<List<GetProductDto>>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {

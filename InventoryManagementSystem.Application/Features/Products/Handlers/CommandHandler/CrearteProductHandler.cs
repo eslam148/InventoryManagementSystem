@@ -21,7 +21,9 @@ namespace InventoryManagementSystem.Application.Features.Products.Handlers
         }
         public async Task<BaseReponseGeneric<bool>> Handle(CrearteProductCommand request, CancellationToken cancellationToken)
         {
-                _unitOfWork.ProductRepository.Add(request.Map<Product>());
+       
+               _unitOfWork.ProductRepository.Add(request.Map<Product>());
+           
                 await _unitOfWork.SaveChangesAsync();  
                 return ResponseFactory<bool>.Success(true, "Create Product successfully");   
         }

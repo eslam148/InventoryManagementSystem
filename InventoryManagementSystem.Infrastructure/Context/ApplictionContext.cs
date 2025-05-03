@@ -18,10 +18,7 @@ namespace InventoryManagementSystem.Infrastructure.Context
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public ApplictionContext()
-        {
-            
-        }
+        
         public ApplictionContext(DbContextOptions options):base(options) { }
 
     
@@ -103,11 +100,7 @@ namespace InventoryManagementSystem.Infrastructure.Context
             base.OnModelCreating(builder);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=InventoryManagementSystem;Integrated Security=True;Encrypt=True;Trust Server Certificate = True");
-            base.OnConfiguring(optionsBuilder);
-        }
+       
 
     }
 }
