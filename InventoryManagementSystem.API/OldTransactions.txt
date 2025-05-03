@@ -1,0 +1,1 @@
+Transaction ID | ProductId |  Quantity | Date | UserId
